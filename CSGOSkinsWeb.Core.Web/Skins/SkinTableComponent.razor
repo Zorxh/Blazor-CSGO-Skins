@@ -1,0 +1,37 @@
+﻿@using CSGOSkinsWeb.Database.Models
+@inherits OwningComponentBase
+@namespace CSGOSkinsWeb.Core.Web.Skins
+
+@if (WeaponSkins == null)
+{
+    <p><em>Loading skins...</em></p>
+}
+else if (!WeaponSkins.Any())
+{
+    <p><em>No skins found</em></p>
+}
+else
+{
+    @foreach (Skin skin in WeaponSkins)
+    {
+        <div class="display-case">
+            <div>
+                <a href="/skins/@skin.Idstring">
+                    <h5 class="display-text">@skin.Skinname</h5>
+                    <span class="rarity @skin.RarityNavigation?.Rarityname.Replace(" ", "-").ToLower()"></span>
+                    <img class="display-image-weap" src="@skin.Imgsrc" />
+                    @if (skin.Weapcase != null)
+                    {
+                        <p class="display-text-date">@(skin.WeapcaseNavigation?.Casecollection ?? "Undefined")</p>
+                    }
+                    else
+                    {
+                        <p class="display-text-date">@(skin.WeapcollNavigation?.Collectionname ?? "Undefined")</p>
+                    }
+                </a>
+            </div>
+        </div>
+
+    }
+}
+

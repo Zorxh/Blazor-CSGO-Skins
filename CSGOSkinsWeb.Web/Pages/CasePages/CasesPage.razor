@@ -1,0 +1,12 @@
+﻿@page "/cases"
+@using CSGOSkinsWeb.Core.Web.Cases
+
+<h2>CS:GO Cases</h2>
+<CaseTableComponent Cases="cases"></CaseTableComponent>
+
+<AuthorizeView>
+    <Authorized>
+        <input style="display: block" type="submit" class="btn btn-primary" value="Create New" @onclick="GoToCreatePage">
+    </Authorized>
+</AuthorizeView>
+

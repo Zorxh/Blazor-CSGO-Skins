@@ -1,0 +1,144 @@
+﻿@using CSGOSkinsWeb.Database.Models
+@namespace CSGOSkinsWeb.Core.Web.Weapons
+
+@if (Weapons == null)
+{
+    <p><em>Loading Weapons...</em></p>
+}
+else if (!Weapons.Any())
+{
+    <p><em>No weapons found</em></p>
+}
+else
+{
+<table id="weapons-table" class="table-borderless">
+    <tr>
+        <td>
+            <h2 style="margin-top: 0px !important;">Rifles</h2>
+        </td>
+    </tr>
+    <tr>
+        @foreach (Weapon weapon in GetWeaponsWithCategory(1))
+        {
+            <td>
+                <div class="display-weapons">
+                    <div>
+                        <a href="/weapons/@weapon.Idstring">
+                            <h5 class="display-text">@weapon.Weapname</h5>
+                            <img class="display-image-weap" src="@weapon.Imgsrc" />
+                            <p class="display-text-date">Skin Count: @WeaponSkinCount(weapon.Idstring)</p>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>
+            <h2>Heavy</h2>
+        </td>
+    </tr>
+    <tr>
+        @foreach (Weapon weapon in GetWeaponsWithCategory(2))
+        {
+            <td>
+                <div class="display-weapons">
+                    <div>
+                        <a href="/weapons/@weapon.Idstring">
+                            <h5 class="display-text">@weapon.Weapname</h5>
+                            <img class="display-image-weap" src="@weapon.Imgsrc" />
+                            <p class="display-text-date">Skin Count: @WeaponSkinCount(weapon.Idstring)</p>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>
+            <h2>SMGs</h2>
+        </td>
+    </tr>
+    <tr>
+        @foreach (Weapon weapon in GetWeaponsWithCategory(3))
+        {
+            <td>
+                <div class="display-weapons">
+                    <div>
+                        <a href="/weapons/@weapon.Idstring">
+                            <h5 class="display-text">@weapon.Weapname</h5>
+                            <img class="display-image-weap" src="@weapon.Imgsrc" />
+                            <p class="display-text-date">Skin Count: @WeaponSkinCount(weapon.Idstring)</p>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>
+            <h2>Pistols</h2>
+        </td>
+    </tr>
+    <tr>
+        @foreach (Weapon weapon in GetWeaponsWithCategory(4))
+        {
+            <td>
+                <div class="display-weapons">
+                    <div>
+                        <a href="/weapons/@weapon.Idstring">
+                            <h5 class="display-text">@weapon.Weapname</h5>
+                            <img class="display-image-weap" src="@weapon.Imgsrc" />
+                            <p class="display-text-date">Skin Count: @WeaponSkinCount(weapon.Idstring)</p>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>
+            <h2>Knives</h2>
+        </td>
+    </tr>
+    <tr>
+        @foreach (Weapon weapon in GetWeaponsWithCategory(5))
+        {
+            <td>
+                <div class="display-weapons">
+                    <div>
+                        <a href="/weapons/@weapon.Idstring">
+                            <h5 class="display-text">@weapon.Weapname</h5>
+                            <img class="display-image-weap" src="@weapon.Imgsrc" />
+                            <p class="display-text-date">Skin Count: @WeaponSkinCount(weapon.Idstring)</p>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>
+            <h2>Gloves</h2>
+        </td>
+    </tr>
+    <tr>
+        @foreach (Weapon weapon in GetWeaponsWithCategory(6))
+        {
+            <td>
+                <div class="display-weapons">
+                    <div>
+                        <a href="/weapons/@weapon.Idstring">
+                            <h5 class="display-text">@weapon.Weapname</h5>
+                            <img class="display-image-weap" src="@weapon.Imgsrc" />
+                            <p class="display-text-date">Skin Count: @WeaponSkinCount(weapon.Idstring)</p>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+</table>
+    
+}
+

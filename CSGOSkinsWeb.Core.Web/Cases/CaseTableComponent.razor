@@ -1,0 +1,30 @@
+﻿@using CSGOSkinsWeb.Database.Models
+@using System.Globalization
+@inherits OwningComponentBase
+@namespace CSGOSkinsWeb.Core.Web.Cases
+
+@if (Cases == null)
+{
+    <p><em>Loading Cases...</em></p>
+}
+else if (!Cases.Any())
+{
+    <p><em>No cases found</em></p>
+}
+else
+{
+    @foreach (WeaponCase csgocase in Cases)
+    {
+        <div class="display-case">
+            <div>
+                <a href="/cases/@csgocase.Idstring">
+                    <h5 class="display-text">@csgocase.Casename</h5>
+                    <img class="display-image" src="@csgocase.Imgsrc"/>
+                    <p class="display-text-date">Released: @csgocase.Introduced.GetValueOrDefault().ToString("MMMM dd yyyy", new CultureInfo("en-US"))</p>
+                </a>
+            </div>
+        </div>
+
+    }
+}
+

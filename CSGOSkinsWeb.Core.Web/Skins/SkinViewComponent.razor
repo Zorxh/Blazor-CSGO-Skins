@@ -1,0 +1,21 @@
+﻿@namespace CSGOSkinsWeb.Core.Web.Skins
+@inherits OwningComponentBase
+
+@if (WeaponSkin != null)
+{
+    <h1>@WeaponSkin.Skinname</h1>
+    <p>Id: @WeaponSkin.Id</p>
+    <p>Id string: @WeaponSkin.Idstring</p>
+    <p>Weapon: @WeaponSkin.Weapon</p>
+    <p>Rarity: @WeaponSkin.Rarity</p>
+    <p>Case: @WeaponSkin.Weapcase</p>
+    <p>Collection: @WeaponSkin.Weapcoll</p>
+    <p>Has Stattrak: @WeaponSkin.Hasstattrak</p>
+    <p>Has Souvenir: @WeaponSkin.Hassouvenir</p>
+    <p>Has Pattern: @WeaponSkin.Haspattern</p>
+    <p>Float start: @WeaponSkin.Wearstart</p>
+    <p>Float end: @WeaponSkin.Wearend</p>
+    <p>Description: @WeaponSkin.Skindescription</p>
+    <img src="@WeaponSkin.Imgsrc"/>
+
+}
