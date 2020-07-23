@@ -2,13 +2,15 @@
 @using CSGOSkinsWeb.Core.Web.Cases
 @using CSGOSkinsWeb.Core.Web.Skins
 
+    <section class="content-view-page">
+        <CaseViewComponent WeaponCase="weaponCase"></CaseViewComponent>
+        <br/>
+        <SkinTableComponent WeaponSkins="weaponSkinsByCaseId"></SkinTableComponent>
 
-<CaseViewComponent WeaponCase="weaponCase"></CaseViewComponent>
-<SkinTableComponent WeaponSkins="weaponSkinsByCaseId"></SkinTableComponent>
 
-
-<AuthorizeView>
-    <Authorized>
-        <input style="display: block" type="submit" class="btn btn-primary" value="Edit" @onclick="GoToEditPage">
-    </Authorized>
-</AuthorizeView>
+        <AuthorizeView>
+            <Authorized>
+                <input style="display: block" type="submit" class="btn btn-primary" value="Edit" @onclick="GoToEditPage">
+            </Authorized>
+        </AuthorizeView>
+    </section>

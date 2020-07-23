@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, h6, a, p {
     color: #ffffff;
 }
 
+h2 {
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
+}
+
 a, .btn-link {
     color: #0366d6;
 }
@@ -136,14 +140,61 @@ app {
 }
 
 .display-weapons {
+    display: inline-block;
     text-align: center;
     width: 20%;
-    margin: 0 1%;
-    margin-bottom: 5%;
-    min-width: 175px;
-    max-width: 250px;
+    margin: 0 0.3%;
+    margin-bottom: 1.5%;
+    min-width: 125px;
+    max-width: 175px;
     background-color: #333;
     border-radius: 10px;
+}
+
+.view-page-img {
+    margin: -5vh auto;
+    width: 25%;
+    height: auto;
+    min-width: 250px;
+}
+
+.view-page-bubbles {
+    margin: 1% auto;
+}
+
+.view-page-date {
+    display: inline-block;
+    position: center;
+    width: 11rem;
+    font-size: calc(11px + (14 - 11) * ((100vw - 300px) / (1600 - 300)));
+    background-color: #1861ac;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1vh 0;
+}
+
+.view-page-collection {
+    width: 22rem;
+    margin: 0 auto;
+    background-color: rgb(255, 128, 41);
+    font-size: calc(11px + (14 - 11) * ((100vw - 300px) / (1600 - 300)));
+    border-radius: 7px;
+    padding: 1vh 0;
+}
+
+.view-page-title {
+    width: 22rem;
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
+    margin: 0 auto;
+    background-color: #23282d;
+    border-radius: 7px;
+    padding: 1vh 0;
+}
+
+.content-view-page {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center
 }
 
 #weapons-table td {
@@ -152,7 +203,7 @@ app {
 }
 
 #weapons-table h2 {
-    margin-top: 20%;
+    margin-top: 2%;
 }
 
 .display-image {
@@ -168,22 +219,24 @@ app {
 
 .display-text, .display-text-date {
     color: #ffffff;
-    background-color: #222;
+    background-color: #23282d;
     margin: 0;
-
+    height: 100%;
+    min-height: 80%;
 }
 
 .display-text {
     border-radius: 10px 10px 0 0;
-    font-size: 1.5vh;
+    font-size: calc(10px + (15 - 10) * ((100vw - 300px) / (1600 - 300)));
+    white-space: nowrap;
     padding: 5%;
+    overflow: hidden;
 }
 
 .display-text-date {
     border-radius: 0 0 10px 10px;
-    font-size: 1.25vh;
+    font-size: calc(7.5px + (12 - 7.5) * ((100vw - 300px) / (1600 - 300)));
     padding: 2.5%;
-    background-color: #23282d;
 }
 
 #case-create {
@@ -244,11 +297,14 @@ app {
 }
 
 #edit-component {
-    width: 400px;
+    width: 30%;
+    display: inline-block;
 }
 
 #view-component {
+    width: 69%;
     display: inline-block;
+    vertical-align: top;
 }
 
 @media (max-width: 767.98px) {
@@ -262,6 +318,34 @@ app {
 
     .main .top-row a, .main .top-row .btn-link {
         margin-left: 0;
+    }
+
+    .content-view-page {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center
+    }
+
+    .view-page-collection, .view-page-title {
+        width: 15.5rem;
+    }
+
+    .view-page-date {
+        width: 7.5rem;
+    }
+
+    .display-case {
+        min-width: 120px;
+        max-width: 250px;
+    }
+
+    .display-weapons {
+        min-width: 120px;
+        max-width: 250px;
+    }
+
+    #weapons-table td {
+        margin: 0px;
     }
 }
 
@@ -290,6 +374,7 @@ app {
     .navbar-toggler {
         display: none;
     }
+
 
     .sidebar .collapse {
         /* Never collapse the sidebar for wide screens */

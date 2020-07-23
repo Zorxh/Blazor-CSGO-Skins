@@ -44,8 +44,10 @@ namespace CSGOSkinsWeb.Web
 
             services.AddScoped<IWeaponService, WeaponService>();
             services.AddScoped<ICaseService, CaseService>();
+            services.AddScoped<ICollectionService, CollectionService>();
             services.AddScoped<ISkinService, SkinService>();
             services.AddScoped<IRarityService, RarityService>();
+            services.AddScoped<ICasePriceService, CasePriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

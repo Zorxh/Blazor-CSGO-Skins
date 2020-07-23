@@ -11,17 +11,11 @@ else if (!Weapons.Any())
 }
 else
 {
-<table id="weapons-table" class="table-borderless">
-    <tr>
-        <td>
-            <h2 style="margin-top: 0px !important;">Rifles</h2>
-        </td>
-    </tr>
-    <tr>
+    <h2 style="margin-top: 0px !important;">Rifles</h2>
+
         @foreach (Weapon weapon in GetWeaponsWithCategory(1))
         {
-            <td>
-                <div class="display-weapons">
+            <div class="display-weapons">
                     <div>
                         <a href="/weapons/@weapon.Idstring">
                             <h5 class="display-text">@weapon.Weapname</h5>
@@ -30,19 +24,12 @@ else
                         </a>
                     </div>
                 </div>
-            </td>
         }
-    </tr>
-    <tr>
-        <td>
-            <h2>Heavy</h2>
-        </td>
-    </tr>
-    <tr>
-        @foreach (Weapon weapon in GetWeaponsWithCategory(2))
+
+    <h2>Heavy</h2>
+    @foreach (Weapon weapon in GetWeaponsWithCategory(2))
         {
-            <td>
-                <div class="display-weapons">
+            <div class="display-weapons">
                     <div>
                         <a href="/weapons/@weapon.Idstring">
                             <h5 class="display-text">@weapon.Weapname</h5>
@@ -51,19 +38,12 @@ else
                         </a>
                     </div>
                 </div>
-            </td>
         }
-    </tr>
-    <tr>
-        <td>
-            <h2>SMGs</h2>
-        </td>
-    </tr>
-    <tr>
-        @foreach (Weapon weapon in GetWeaponsWithCategory(3))
+
+    <h2>SMGs</h2>
+    @foreach (Weapon weapon in GetWeaponsWithCategory(3))
         {
-            <td>
-                <div class="display-weapons">
+            <div class="display-weapons">
                     <div>
                         <a href="/weapons/@weapon.Idstring">
                             <h5 class="display-text">@weapon.Weapname</h5>
@@ -72,19 +52,11 @@ else
                         </a>
                     </div>
                 </div>
-            </td>
         }
-    </tr>
-    <tr>
-        <td>
-            <h2>Pistols</h2>
-        </td>
-    </tr>
-    <tr>
-        @foreach (Weapon weapon in GetWeaponsWithCategory(4))
+    <h2>Pistols</h2>
+    @foreach (Weapon weapon in GetWeaponsWithCategory(4))
         {
-            <td>
-                <div class="display-weapons">
+            <div class="display-weapons">
                     <div>
                         <a href="/weapons/@weapon.Idstring">
                             <h5 class="display-text">@weapon.Weapname</h5>
@@ -93,19 +65,11 @@ else
                         </a>
                     </div>
                 </div>
-            </td>
         }
-    </tr>
-    <tr>
-        <td>
-            <h2>Knives</h2>
-        </td>
-    </tr>
-    <tr>
-        @foreach (Weapon weapon in GetWeaponsWithCategory(5))
+    <h2>Knives</h2>
+    @foreach (Weapon weapon in GetWeaponsWithCategory(5))
         {
-            <td>
-                <div class="display-weapons">
+            <div class="display-weapons">
                     <div>
                         <a href="/weapons/@weapon.Idstring">
                             <h5 class="display-text">@weapon.Weapname</h5>
@@ -114,19 +78,11 @@ else
                         </a>
                     </div>
                 </div>
-            </td>
         }
-    </tr>
-    <tr>
-        <td>
-            <h2>Gloves</h2>
-        </td>
-    </tr>
-    <tr>
-        @foreach (Weapon weapon in GetWeaponsWithCategory(6))
+    <h2>Gloves</h2>
+    @foreach (Weapon weapon in GetWeaponsWithCategory(6))
         {
-            <td>
-                <div class="display-weapons">
+            <div class="display-weapons">
                     <div>
                         <a href="/weapons/@weapon.Idstring">
                             <h5 class="display-text">@weapon.Weapname</h5>
@@ -135,10 +91,6 @@ else
                         </a>
                     </div>
                 </div>
-            </td>
         }
-    </tr>
-</table>
-    
 }
 

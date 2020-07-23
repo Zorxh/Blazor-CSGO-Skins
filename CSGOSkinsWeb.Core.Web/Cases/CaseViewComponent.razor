@@ -1,10 +1,29 @@
 ﻿@namespace CSGOSkinsWeb.Core.Web.Cases
+@using System.Globalization
 @inherits OwningComponentBase
 
 @if (WeaponCase != null)
 {
-    <h1>@WeaponCase.Casename</h1>
-    <p>@WeaponCase.Casecollection</p>
-    <p>@WeaponCase.Idstring</p>
-
+    <h3 class="view-page-title">@WeaponCase.Casename</h3>
+    <img class="view-page-img" src="@WeaponCase.Imgsrc" />
+    <br />
+    <div class="view-page-collection" style="background-color: #23282d !important">
+        <p style="margin-bottom: -2px;">Released: @WeaponCase.Introduced.GetValueOrDefault().ToString("MMMM dd yyyy", new CultureInfo("en-US"))</p>
+    </div>
+    <div class="view-page-bubbles">
+        <a href="https://steamcommunity.com/market/listings/730/@casePriceService.ConvertToHashKey(WeaponCase.Casename)" target="_blank">
+            <div class="view-page-date">
+                <p style="margin-bottom: -2px;">Price:</p>
+                <p style="margin-bottom: -2px;">@SetCasePrice(WeaponCase.Casename)</p>
+            </div>
+            <div class="view-page-date">
+                <p style="margin-bottom: -2px;">Available: </p>
+                <p style="margin-bottom: -2px;">@SetCaseVolume(WeaponCase.Casename)</p>
+            </div>
+        </a>
+    </div>
+    <div class="view-page-collection">
+        <p style="margin-bottom: -2px;">@WeaponCase.Casecollection</p>
+    </div>
 }
+

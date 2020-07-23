@@ -1,0 +1,112 @@
+﻿@namespace CSGOSkinsWeb.Core.Web.Skins
+@using CSGOSkinsWeb.Core.Web.Inputs 
+@inherits OwningComponentBase
+
+@if (WeaponSkin != null)
+{
+    <EditForm Model="WeaponSkin" OnValidSubmit="HandleValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <h1>Create Skin</h1>
+
+        <div>
+            <div class="form-group">
+                <label class="text-white" for="skinid">Id</label>
+                <InputNumber id="skinid" class="form-control" @bind-Value="WeaponSkin.Id" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="idstring">Id string</label>
+                <InputText id="idstring" class="form-control" @bind-Value="WeaponSkin.Idstring" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="skinname">Skin Name</label>
+                <InputText id="skinname" class="form-control" @bind-Value="WeaponSkin.Skinname" />
+            </div>
+
+            <div class="form-group">
+                <label class="text-white" for="weapon">Weapon</label>
+                @if (weaponsList != null)
+                {
+                    <InputSelectNullableNumber class="form-group form-control" @bind-Value="WeaponSkin.Weapon">
+                        <option value="">Select a weapon...</option>
+                        @foreach (var weapon in weaponsList)
+                        {
+                            <option value="@weapon.Id">@weapon.Weapname</option>
+                        }
+                    </InputSelectNullableNumber>
+                }
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="rarity">Rarity</label>
+                @if (raritiesList != null)
+                {
+                    <InputSelectNullableNumber class="form-group form-control" @bind-Value="WeaponSkin.Rarity">
+                        <option value="">Select a rarity...</option>
+                        @foreach (var rarity in raritiesList)
+                        {
+                            <option value="@rarity.Id">@rarity.Rarityname</option>
+                        }
+                    </InputSelectNullableNumber>
+                }
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="case">Case</label>
+                @if (casesList != null)
+                {
+                    <InputSelectNullableNumber class="form-group form-control" @bind-Value="WeaponSkin.Weapcase">
+                        <option value="">Select a case...</option>
+                        @foreach (var weaponCase in casesList)
+                        {
+                            <option value="@weaponCase.Id">@weaponCase.Casename</option>
+                        }
+                    </InputSelectNullableNumber>
+                }
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="collection">Collection</label>
+                @if (collectionsList != null)
+                {
+                    <InputSelectNullableNumber class="form-group form-control" @bind-Value="WeaponSkin.Weapcoll">
+                        <option value="">Select a collection...</option>
+                        @foreach (var weaponCollection in collectionsList)
+                        {
+                            <option value="@weaponCollection.Id">@weaponCollection.Collectionname</option>
+                        }
+                    </InputSelectNullableNumber>
+                }
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="hasstattrak">Has Stattrak?</label>
+                <InputCheckbox id="hasstattrak" class="form-control" @bind-Value="WeaponSkin.Hasstattrak" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="hassouvenir">Has Souvenir?</label>
+                <InputCheckbox id="hassouvenir" class="form-control" @bind-Value="WeaponSkin.Hassouvenir" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="haspattern">Has Pattern?</label>
+                <InputCheckbox id="haspattern" class="form-control" @bind-Value="WeaponSkin.Haspattern" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="floatstart">Float Start</label>
+                <InputNumber id="floatstart" class="form-control" @bind-Value="WeaponSkin.Wearstart" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="floatend">Float Start</label>
+                <InputNumber id="floatend" class="form-control" @bind-Value="WeaponSkin.Wearend" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="skindescription">Description</label>
+                <InputTextArea id="skindescription" class="form-control" @bind-Value="WeaponSkin.Skindescription" />
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="skinimg">Image Source</label>
+                <InputTextArea id="skinimg" class="form-control" @bind-Value="WeaponSkin.Imgsrc" />
+            </div>
+
+            <br />
+            <input class="btn btn-primary" type="submit" value="Create" />
+            <input class="btn btn-secondary" type="button" value="Back" @onclick="ReturnToTablePage" />
+        </div>
+</EditForm>
+}
