@@ -1,0 +1,14 @@
+﻿@page "/collections"
+@using CSGOSkinsWeb.Core.Web.Collections
+
+    <div class="content-view-page">
+        <h2>CS:GO Collections</h2>
+        <CollectionTableComponent Collections="collections"></CollectionTableComponent>
+
+        <AuthorizeView>
+            <Authorized>
+                <input style="display: block" type="submit" class="btn btn-primary" value="Create New" @onclick="GoToCreatePage">
+            </Authorized>
+        </AuthorizeView>
+
+    </div>

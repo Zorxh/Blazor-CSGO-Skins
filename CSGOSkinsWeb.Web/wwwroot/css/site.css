@@ -211,6 +211,11 @@ app {
     width: 100%;
 }
 
+.display-image-collections {
+    margin: 0 auto;
+    width: 60%;
+}
+
 .display-image-weap {
     margin: -10% auto;
     padding: 10px;

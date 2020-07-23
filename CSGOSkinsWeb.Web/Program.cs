@@ -22,7 +22,7 @@ namespace CSGOSkinsWeb.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory()).UseStartup<Startup>();
                 });
     }
 }

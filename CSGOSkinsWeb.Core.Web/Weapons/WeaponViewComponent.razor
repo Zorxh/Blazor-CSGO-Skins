@@ -1,0 +1,15 @@
+﻿@namespace CSGOSkinsWeb.Core.Web.Weapons
+@inherits OwningComponentBase
+
+
+@if (Weapon != null)
+{
+    <h3 class="view-page-title">@Weapon.Weapname</h3>
+    <img class="view-page-img" src="@Weapon.Imgsrc" />
+    <br />
+    <div class="view-page-collection" style="background-color: #23282d !important">
+        <p style="margin-bottom: -2px;">All skins for the @Weapon.Weapname</p>
+    </div>
+
+}
+

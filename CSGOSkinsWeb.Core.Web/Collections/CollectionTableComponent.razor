@@ -1,0 +1,31 @@
+﻿@using CSGOSkinsWeb.Database.Models
+@using System.Globalization
+@using System.IO
+@inherits OwningComponentBase
+@namespace CSGOSkinsWeb.Core.Web.Collections
+
+@if (Collections == null)
+{
+    <p><em>Loading Collections...</em></p>
+}
+else if (!Collections.Any())
+{
+    <p><em>No cases found</em></p>
+}
+else
+{
+    @foreach (WeaponCollection collection in Collections)
+    {
+        <div class="display-case">
+            <div>
+                <a href="/collections/@collection.Idstring">
+                    <h5 class="display-text">@collection.Collectionname</h5>
+                    <img class="display-image-collections" src="images/collections/@(collection.Idstring).png"/>
+                    <p class="display-text-date">Released: @collection.Introduced.GetValueOrDefault().ToString("MMMM dd yyyy", new CultureInfo("en-US"))</p>
+                </a>
+            </div>
+        </div>
+
+    }
+}
+

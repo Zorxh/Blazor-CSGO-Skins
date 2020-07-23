@@ -1,0 +1,9 @@
+﻿@page "/weapons/{Idstring}"
+@using CSGOSkinsWeb.Core.Web.Weapons
+@using CSGOSkinsWeb.Core.Web.Skins
+
+    <section class="content-view-page">
+        <WeaponViewComponent Weapon="weapon"></WeaponViewComponent>
+        <br/>
+        <SkinTableComponent WeaponSkins="weaponSkinsByWeaponId"></SkinTableComponent>
+    </section>
