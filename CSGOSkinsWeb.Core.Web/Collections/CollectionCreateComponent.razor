@@ -1,0 +1,36 @@
+﻿@namespace CSGOSkinsWeb.Core.Web.Collections
+@inherits OwningComponentBase
+
+@if (weaponCollection != null)
+{
+    <EditForm Model="weaponCollection" OnValidSubmit="HandleValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <h1>Create Case</h1>
+
+        <div class="form-group">
+            <label class="text-white" for="caseid">Id</label>
+            <InputNumber id="caseid" class="form-control" @bind-Value="weaponCollection.Id" />
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="idstring">Id string</label>
+            <InputText id="idstring" class="form-control" @bind-Value="weaponCollection.Idstring" />
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="collectionname">Collection Name</label>
+            <InputText id="collectionname" class="form-control" @bind-Value="weaponCollection.Collectionname" />
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="introduced">Release Date</label>
+            <InputDate id="introduced" class="form-control" @bind-Value="weaponCollection.Introduced" />
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="caseimg">Image Source</label>
+            <InputTextArea id="caseimg" class="form-control" @bind-Value="weaponCollection.Imgsrc" />
+        </div>
+        
+        <br/>
+        <input class="btn btn-primary" type="submit" value="Create" />
+        <input class="btn btn-secondary" type="button" value="Back" @onclick="ReturnToTablePage" />
+    </EditForm>
+}

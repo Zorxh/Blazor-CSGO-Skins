@@ -355,6 +355,16 @@ app {
         max-width: 250px;
     }
 
+    .view-page-img {
+        width: 15%;
+        min-width: 170px;
+    }
+
+    .view-page-img-collections {
+        width: 10%;
+        min-width: 170px;
+    }
+
     #weapons-table td {
         margin: 0px;
     }
