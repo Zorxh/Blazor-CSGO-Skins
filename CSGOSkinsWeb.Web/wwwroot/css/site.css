@@ -158,6 +158,12 @@ app {
     min-width: 250px;
 }
 
+.view-page-img-collections {
+    width: 15%;
+    height: auto;
+    min-width: 250px;
+}
+
 .view-page-bubbles {
     margin: 1% auto;
 }

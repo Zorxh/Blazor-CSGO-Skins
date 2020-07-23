@@ -1,0 +1,17 @@
+﻿@namespace CSGOSkinsWeb.Core.Web.Collections
+@using System.Globalization
+@inherits OwningComponentBase
+
+@if (WeaponCollection != null)
+{
+    <h3 class="view-page-title">@WeaponCollection.Collectionname</h3>
+    <img class="view-page-img-collections" src="/images/collections/@(WeaponCollection.Idstring).png" />
+    <br />
+    <div class="view-page-collection" style="background-color: #23282d !important">
+        <p style="margin-bottom: -2px;">Released: @WeaponCollection.Introduced.GetValueOrDefault().ToString("MMMM dd yyyy", new CultureInfo("en-US"))</p>
+    </div>
+    <div class="view-page-collection" style="margin-top: 8px; ">
+        <p style="margin-bottom: -2px;">@WeaponCollection.Collectionname</p>
+    </div>
+}
+

@@ -1,0 +1,16 @@
+﻿@page "/collections/{Idstring}"
+@using CSGOSkinsWeb.Core.Web.Collections
+@using CSGOSkinsWeb.Core.Web.Skins
+
+    <section class="content-view-page">
+        <CollectionViewComponent WeaponCollection="weaponCollection"></CollectionViewComponent>
+        <br/>
+        <SkinTableComponent WeaponSkins="weaponSkinsByCollectionId"></SkinTableComponent>
+
+
+        <AuthorizeView>
+            <Authorized>
+                <input style="display: block" type="submit" class="btn btn-primary" value="Edit" @onclick="GoToEditPage">
+            </Authorized>
+        </AuthorizeView>
+    </section>
