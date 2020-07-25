@@ -10,14 +10,10 @@ namespace CSGOSkinsWeb.Core.Web.Cases
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
+        [Inject]
+        public ICaseService CaseService { get; set; }
+
         public WeaponCase weaponCase = new WeaponCase();
-
-        private ICaseService CaseService;
-
-        protected override void OnInitialized()
-        {
-            CaseService = (ICaseService)ScopedServices.GetService(typeof(ICaseService));
-        }
 
         private async Task HandleValidSubmitAsync()
         {

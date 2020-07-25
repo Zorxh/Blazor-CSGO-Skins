@@ -13,16 +13,13 @@ namespace CSGOSkinsWeb.Core.Web.Cases
         public NavigationManager NavigationManager { get; set; }
         [Inject]
         public IJSRuntime JsRuntime { get; set; }
+        [Inject]
+        public ICaseService CaseService { get; set; }
 
         [Parameter]
         public WeaponCase WeaponCase { get; set; }
 
-        private ICaseService CaseService;
 
-        protected override void OnInitialized()
-        {
-            CaseService = (ICaseService)ScopedServices.GetService(typeof(ICaseService));
-        }
 
         private async Task DeleteCaseAsync()
         {

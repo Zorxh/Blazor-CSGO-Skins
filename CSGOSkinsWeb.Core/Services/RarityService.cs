@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace CSGOSkinsWeb.Core.Services
 {
-    public interface IWeaponService
+    public interface IRarityService
     {
-        Task<Weapon> GetWeaponByIdStringAsync(string idString);
+        Task<Rarity> GetRarityByIdAsync(int id);
 
-        Task<List<Weapon>> GetWeaponsAsync();
+        Task<List<Rarity>> GetRaritiesAsync();
     }
     
-    public class WeaponService : IWeaponService
+    public class RarityService : IRarityService
     {
-        private SkinDbContext _context;
+        private readonly SkinDbContext _context;
 
-        public WeaponService(SkinDbContext context)
+        public RarityService(SkinDbContext context)
         {
             _context = context;
         }
 
-        public async Task<Weapon> GetWeaponByIdStringAsync(string idString)
+        public async Task<Rarity> GetRarityByIdAsync(int id)
         {
-            return await _context.Weapon.FirstOrDefaultAsync(x => x.Idstring == idString);
+            return await _context.Rarity.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<Weapon>> GetWeaponsAsync()
+        public async Task<List<Rarity>> GetRaritiesAsync()
         {
-            return await _context.Weapon.ToListAsync().ConfigureAwait(false);
+            return await _context.Rarity.ToListAsync().ConfigureAwait(false);
         }
     }
 }

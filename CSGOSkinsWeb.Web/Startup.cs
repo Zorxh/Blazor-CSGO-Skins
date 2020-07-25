@@ -1,3 +1,4 @@
+using BlazorStrap;
 using CSGOSkinsWeb.Core.Services;
 using CSGOSkinsWeb.Database;
 using CSGOSkinsWeb.Database.Models;
@@ -39,6 +40,7 @@ namespace CSGOSkinsWeb.Web
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddBootstrapCss();
 
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<AppUser>>();
 
@@ -48,6 +50,7 @@ namespace CSGOSkinsWeb.Web
             services.AddScoped<ISkinService, SkinService>();
             services.AddScoped<IRarityService, RarityService>();
             services.AddScoped<ICasePriceService, CasePriceService>();
+            services.AddScoped<ISkinPriceService, SkinPriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

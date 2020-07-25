@@ -1,21 +1,118 @@
 ﻿@namespace CSGOSkinsWeb.Core.Web.Skins
+@using System.Globalization
+@using Microsoft.EntityFrameworkCore.Query
 @inherits OwningComponentBase
 
 @if (WeaponSkin != null)
 {
-    <h1>@WeaponSkin.Skinname</h1>
-    <p>Id: @WeaponSkin.Id</p>
-    <p>Id string: @WeaponSkin.Idstring</p>
-    <p>Weapon: @WeaponSkin.Weapon</p>
-    <p>Rarity: @WeaponSkin.Rarity</p>
-    <p>Case: @WeaponSkin.Weapcase</p>
-    <p>Collection: @WeaponSkin.Weapcoll</p>
-    <p>Has Stattrak: @WeaponSkin.Hasstattrak</p>
-    <p>Has Souvenir: @WeaponSkin.Hassouvenir</p>
-    <p>Has Pattern: @WeaponSkin.Haspattern</p>
-    <p>Float start: @WeaponSkin.Wearstart</p>
-    <p>Float end: @WeaponSkin.Wearend</p>
-    <p>Description: @WeaponSkin.Skindescription</p>
-    <img src="@WeaponSkin.Imgsrc"/>
+    <div class="border-view" style="display: inline-block">
+        <h3 class="view-page-title bg-transparent" style="margin-top: 20px;"> @GetWeapon(WeaponSkin.Weapon ?? 1).Weapname | @WeaponSkin.Skinname</h3>
+        <p class="rarity-view @WeaponSkin.RarityNavigation?.Rarityname.Replace(" ", "-").ToLower()">@WeaponSkin.RarityNavigation?.Rarityname</p>
+        <img class="view-page-img-skins" src="@WeaponSkin.Imgsrc" />
+        @if (@WeaponSkin.WeapcaseNavigation?.Casecollection != null)
+        {
+            <p class="view-page-collection-skins">@WeaponSkin.WeapcaseNavigation?.Casecollection</p>
+        }
+        else
+        {
+            <p class="view-page-collection-skins">@WeaponSkin.WeapcollNavigation?.Collectionname</p>
+        }
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+            @if (WeaponSkin.Hasstattrak)
+            {
+                <div class="skin-page-bubbles green-bubble">
+                    <p style="margin-bottom: 2px;">StatTrak</p>
+                    <p style="margin-bottom: 2px;">Available</p>
+                </div>
+            }
+            else
+            {
+                <div class="skin-page-bubbles covert">
+                    <p style="margin-bottom: 2px;">StatTrak</p>
+                    <p style="margin-bottom: 2px;">Not Available</p>
+                </div>
+            }
+            @if (WeaponSkin.Hassouvenir)
+            {
+                <div class="skin-page-bubbles green-bubble">
+                    <p style="margin-bottom: 2px;">Souvenir</p>
+                    <p style="margin-bottom: 2px;">Available</p>
+                </div>
+            }
+            else
+            {
+                <div class="skin-page-bubbles covert">
+                    <p style="margin-bottom: 2px;">Souvenir</p>
+                    <p style="margin-bottom: 2px;">Not Available</p>
+                </div>
+            }
+            @if (WeaponSkin.Haspattern)
+            {
+                <div class="skin-page-bubbles green-bubble">
+                    <p style="margin-bottom: 2px;">Pattern</p>
+                    <p style="margin-bottom: 2px;">Available</p>
+                </div>
+            }
+            else
+            {
+                <div class="skin-page-bubbles covert">
+                    <p style="margin-bottom: 2px;">Pattern</p>
+                    <p style="margin-bottom: 2px;">Not Available</p>
+                </div>
+            }
+        </div>
+    </div>
+    <div style="display: inline-block; vertical-align: top;">
+        <div class="border-view-sm">
+            <h4 class="view-page-title bg-transparent">Wear Range</h4>
+            <div>
+                <BSTooltip id="firsttool" class="tooltip-blazor" Target="tooltip-fn" Placement="Placement.Top">Factory New:<br />0.00 - 0.07</BSTooltip>
+                <a id="tooltip-fn"><div class="float-box factory-new"></div></a>
+                <BSTooltip class="tooltip-blazor" Target="tooltip-mw" Placement="Placement.Top">Minimal Wear:<br />0.07 - 0.15</BSTooltip>
+                <a id="tooltip-mw"><div class="float-box minimal-wear"></div></a>
+                <BSTooltip class="tooltip-blazor" Target="tooltip-ft" Placement="Placement.Top">Field Tested:<br />0.15 - 0.38</BSTooltip>
+                <a id="tooltip-ft"><div class="float-box field-tested"></div></a>
+                <BSTooltip class="tooltip-blazor" Target="tooltip-ww" Placement="Placement.Top">Well Worn:<br />0.38 - 0.45</BSTooltip>
+                <a id="tooltip-ww"><div class="float-box well-worn"></div></a>
+                <BSTooltip class="tooltip-blazor" Target="tooltip-bs" Placement="Placement.Top">Battle Scarred:<br />0.45 - 1.00</BSTooltip>
+                <a id="tooltip-bs"><div class="float-box battle-scarred"></div></a>
+
+            </div>
+            <div style="text-align: left; padding-right: 7%">
+                <div style="display: inline-block; width: @((0 + WeaponSkin.Wearstart) * 100)%"></div>
+                <p class="speech-bubble-1" style="left: calc(@((WeaponSkin.Wearstart)*100)%)">@WeaponSkin.Wearstart?.ToString("F2", CultureInfo.CreateSpecificCulture("en-US"))</p>
+                <div style="display: inline-block; width: @((WeaponSkin.Wearend - WeaponSkin.Wearstart) * 100)%"></div>
+                <p class="speech-bubble-2" style="left: calc(@(WeaponSkin.Wearend*100)%)">@WeaponSkin.Wearend?.ToString("F2", CultureInfo.CreateSpecificCulture("en-US"))</p>
+            </div>
+            <BSTooltip class="tooltip" Target="tooltip-specific" Placement="Placement.Top">Skin available from:<br />@WeaponSkin.Wearstart?.ToString("F2", CultureInfo.CreateSpecificCulture("en-US")) - @WeaponSkin.Wearend?.ToString("F2", CultureInfo.CreateSpecificCulture("en-US"))</BSTooltip>
+            <div id="tooltip-specific" class="float-margin">
+                <div class="float-box unavailable-range-left covert" style="width: @FloatRight(WeaponSkin.Wearstart ?? 0).Replace(",", ".")"></div>
+                <div class="float-box available-range" style="width: @AvailableFloat(WeaponSkin.Wearend ?? 1, WeaponSkin.Wearstart ?? 0).Replace(",", ".") !important"></div>
+                <div class="float-box unavailable-range-right covert" style="width: @FloatLeft(WeaponSkin.Wearend ?? 1).Replace(",", ".")"></div>
+            </div>
+            <p style="text-align: left !important; padding: 0 3%;"><span class="font-weight-bold">Description:</span> @WeaponSkin.Skindescription</p>
+        </div>
+        <div class="border-view-sm">
+            <h4 class="view-page-title bg-transparent">Available in</h4>
+            @if (@WeaponSkin.WeapcaseNavigation?.Casecollection != null)
+            {
+                <div style="width: 50%; margin: 0 auto; padding-bottom: 20px;">
+                    <a href="/cases/@WeaponSkin.WeapcaseNavigation.Idstring">
+                        <img class="display-image" src="@WeaponSkin.WeapcaseNavigation.Imgsrc" />
+                        <h5 class="display-text">@WeaponSkin.WeapcaseNavigation.Casename</h5>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div style="width: 50%; margin: 0 auto; padding-bottom: 20px;">
+                    <a href="/collections/@WeaponSkin.WeapcollNavigation.Idstring">
+                        <img class="display-image-collections" src="images/collections/@(WeaponSkin.WeapcollNavigation.Idstring).png" />
+                        <h5 class="display-text">@WeaponSkin.WeapcollNavigation.Collectionname</h5>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
 
 }

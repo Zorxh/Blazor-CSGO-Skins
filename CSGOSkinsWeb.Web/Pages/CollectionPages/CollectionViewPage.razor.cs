@@ -30,7 +30,12 @@ namespace CSGOSkinsWeb.Web.Pages.CollectionPages
             weaponCollection = await CollectionService.GetCollectionByIdStringAsync(Idstring).ConfigureAwait(false);
             weaponSkins = await SkinService.GetSkinsAsync().ConfigureAwait(false);
 
-            SortSkinList();
+            foreach (var skin in weaponSkins.Where(skin => skin.Weapcoll == weaponCollection.Id))
+            {
+                weaponSkinsByCollectionId.Add(skin);
+            }
+
+            SortSkinsByRarity();
 
             if (weaponCollection == null)
             {
@@ -39,12 +44,9 @@ namespace CSGOSkinsWeb.Web.Pages.CollectionPages
             }
         }
 
-        private void SortSkinList()
+        private void SortSkinsByRarity()
         {
-            foreach (var skin in weaponSkins.Where(skin => skin.Weapcoll == weaponCollection.Id))
-            {
-                weaponSkinsByCollectionId.Add(skin);
-            }
+            weaponSkinsByCollectionId = weaponSkinsByCollectionId.OrderBy(x => x.Rarity).ToList();
         }
 
         private void GoToEditPage()

@@ -1,12 +1,14 @@
 ﻿@page "/skins/{Idstring}"
 @using CSGOSkinsWeb.Core.Web.Skins
 
-
-<SkinViewComponent WeaponSkin="weaponSkin"></SkinViewComponent>
-
-
-<AuthorizeView>
-    <Authorized>
-        <input style="display: block" type="submit" class="btn btn-primary" value="Edit" @onclick="GoToEditPage">
-    </Authorized>
-</AuthorizeView>
+<div class="content-view-page">
+    <SkinViewComponent WeaponSkin="weaponSkin"></SkinViewComponent>
+    <div class="skin-price-table">
+        <SkinPriceComponent SkinDataStatTrak="skinDataStatTrak" SkinDataSouvenir="skinDataSouvenir" SkinData="skinData" WeaponSkin="weaponSkin"></SkinPriceComponent>
+    </div>
+    <AuthorizeView>
+        <Authorized>
+            <input style="display: block" type="submit" class="btn btn-primary" value="Edit" @onclick="GoToEditPage">
+        </Authorized>
+    </AuthorizeView>
+</div>

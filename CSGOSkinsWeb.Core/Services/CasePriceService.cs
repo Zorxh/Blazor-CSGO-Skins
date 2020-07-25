@@ -3,6 +3,7 @@ using CSGOSkinsWeb.Database;
 using CSGOSkinsWeb.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Primitives;
@@ -14,8 +15,8 @@ namespace CSGOSkinsWeb.Core.Services
 {
     public interface ICasePriceService
     {
-        string RetrieveCasePrice(string caseName);
-        string RetrieveCaseVolume(string caseName);
+        Task<string> RetrieveCasePrice(string caseName);
+        Task<string> RetrieveCaseVolume(string caseName);
         string ConvertToHashKey(string caseName);
     }
     
@@ -23,49 +24,56 @@ namespace CSGOSkinsWeb.Core.Services
     {
         private SkinDbContext _context;
 
-        private string jsonUrl = string.Empty;
+        private string jsonUrlPrice = string.Empty;
+        private string caseHash = string.Empty;
+        private string oldCaseHash = string.Empty;
 
         public CasePriceService(SkinDbContext context)
         {
             _context = context;
         }
 
-        public string RetrieveCasePrice(string caseName)
+        public async Task<string> RetrieveCasePrice(string caseName)
         {
-            return CaseJSON("price", caseName);
+            return await CaseJSON("price", caseName);
         }
 
-        public string RetrieveCaseVolume(string caseName)
+        public async Task<string> RetrieveCaseVolume(string caseName)
         {
-            return CaseJSON("volume", caseName);
+            return await CaseJSON("volume", caseName);
         }
 
-        private string CaseJSON(string value, string caseName)
+        private async Task SetJsonVariable()
         {
-            string caseHash = ConvertToHashKey(caseName);
+            if (string.IsNullOrEmpty(jsonUrlPrice) || caseHash != oldCaseHash)
+            {
+                jsonUrlPrice = await $"https://steamcommunity.com/market/priceoverview/?country=US&currency=1&appid=730&market_hash_name={caseHash}".GetJsonFromUrlAsync();
+            }
+        }
 
-            if(jsonUrl.IsNullOrEmpty())
-                jsonUrl = $"https://steamcommunity.com/market/priceoverview/?country=US&currency=1&appid=730&market_hash_name={caseHash}".GetJsonFromUrl();
+        private async Task<string> CaseJSON(string value, string caseName)
+        {
+            caseHash = ConvertToHashKey(caseName);
 
-            if(value == "price")
-                return jsonUrl.FromJson<CaseValuesFromSteam>().lowest_price;
-            else if(value == "volume")
-                return jsonUrl.FromJson<CaseValuesFromSteam>().volume.ToString();
+            await SetJsonVariable();
+
+            if (value == "price")
+            {
+                oldCaseHash = caseHash;
+                return jsonUrlPrice.FromJson<CaseValuesFromSteam>().lowest_price;
+            }
+            else if (value == "volume")
+            {
+                oldCaseHash = caseHash;
+                return jsonUrlPrice.FromJson<CaseValuesFromSteam>().volume.ToString();
+            }
 
             return "Value couldn't be obtained";
         }
 
         public string ConvertToHashKey(string caseName)
         {
-            string caseHash = caseName.Replace(":", "%3A").Replace(" ", "%20");
-
-            return caseHash;
+            return caseName.Replace(":", "%3A").Replace(" ", "%20");
         }
-    }
-
-    public class CaseValuesFromSteam
-    {
-        public string lowest_price { get; set; }
-        public long volume { get; set; }
     }
 }

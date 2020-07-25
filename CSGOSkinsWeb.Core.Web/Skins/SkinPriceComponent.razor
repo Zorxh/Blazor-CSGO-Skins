@@ -1,0 +1,118 @@
+﻿@namespace CSGOSkinsWeb.Core.Web.Skins
+
+@if (WeaponSkin == null)
+{
+    <p><em>Loading skins...</em></p>
+}
+else if (WeaponSkin.Id == 0)
+{
+    <p><em>No skins found</em></p>
+}
+else
+{
+    <BSTable IsStriped="true" IsDark="true" IsResponsive="true">
+        <thead>
+            <tr>
+                <th>Skin Quality</th>
+                <th>Steam Price</th>
+                <th>Volume</th>
+                <th>Buy on Steam</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (WeaponSkin.Wearstart <= 0.07 && WeaponSkin.Wearend >= 0.00)
+            {
+                <tr>
+                    <th>@fn</th>
+                    <td>@SkinData[0].Price</td>
+                    <td>@SkinData[0].Volume</td>
+                    <td><a href="https://steamcommunity.com/market/listings/730/@SkinData[0].SteamFormatHash" target="_blank">Link</a></td>
+                </tr>
+            }
+            @if (WeaponSkin.Wearstart <= 0.15 && WeaponSkin.Wearend >= 0.07)
+            {
+                <tr>
+                    <th>@mw</th>
+                    <td>@SkinData[1].Price</td>
+                    <td>@SkinData[1].Volume</td>
+                    <td><a href="https://steamcommunity.com/market/listings/730/@SkinData[1].SteamFormatHash" target="_blank">Link</a></td>
+                </tr>
+            }
+            @if (WeaponSkin.Wearstart <= 0.38 && WeaponSkin.Wearend >= 0.15)
+            {
+                <tr>
+                    <th>@ft</th>
+                    <td>@SkinData[2].Price</td>
+                    <td>@SkinData[2].Volume</td>
+                    <td><a href="https://steamcommunity.com/market/listings/730/@SkinData[2].SteamFormatHash" target="_blank">Link</a></td>
+                </tr>
+            }
+            @if (WeaponSkin.Wearstart <= 0.45 && WeaponSkin.Wearend >= 0.38)
+            {
+                <tr>
+                    <th>@ww</th>
+                    <td>@SkinData[3].Price</td>
+                    <td>@SkinData[3].Volume</td>
+                    <td><a href="https://steamcommunity.com/market/listings/730/@SkinData[3].SteamFormatHash" target="_blank">Link</a></td>
+                </tr>
+            }
+            @if (WeaponSkin.Wearend >= 0.45)
+            {
+                <tr>
+                    <th>@bs</th>
+                    <td>@SkinData[4].Price</td>
+                    <td>@SkinData[4].Volume</td>
+                    <td><a href="https://steamcommunity.com/market/listings/730/@SkinData[4].SteamFormatHash" target="_blank">Link</a></td>
+                </tr>
+            }
+            @if (WeaponSkin.Hasstattrak)
+            {
+                @if (WeaponSkin.Wearstart <= 0.07 && WeaponSkin.Wearend >= 0.00)
+                {
+                    <tr>
+                        <th><span style="color: orange">@st</span> @fn</th>
+                        <td>@SkinDataStatTrak[0].Price</td>
+                        <td>@SkinDataStatTrak[0].Volume</td>
+                        <td><a href="https://steamcommunity.com/market/listings/730/@SkinDataStatTrak[0].SteamFormatHash" target="_blank">Link</a></td>
+                    </tr>
+                }
+                @if (WeaponSkin.Wearstart <= 0.15 && WeaponSkin.Wearend >= 0.07)
+                {
+                    <tr>
+                        <th><span style="color: orange">@st</span> @mw</th>
+                        <td>@SkinDataStatTrak[1].Price</td>
+                        <td>@SkinDataStatTrak[1].Volume</td>
+                        <td><a href="https://steamcommunity.com/market/listings/730/@SkinDataStatTrak[1].SteamFormatHash" target="_blank">Link</a></td>
+                    </tr>
+                }
+                @if (WeaponSkin.Wearstart <= 0.38 && WeaponSkin.Wearend >= 0.15)
+                {
+                    <tr>
+                        <th><span style="color: orange">@st</span> @ft</th>
+                        <td>@SkinDataStatTrak[2].Price</td>
+                        <td>@SkinDataStatTrak[2].Volume</td>
+                        <td><a href="https://steamcommunity.com/market/listings/730/@SkinDataStatTrak[2].SteamFormatHash" target="_blank">Link</a></td>
+                    </tr>
+                }
+                @if (WeaponSkin.Wearstart <= 0.45 && WeaponSkin.Wearend >= 0.38)
+                {
+                    <tr>
+                        <th><span style="color: orange">@st</span> @ww</th>
+                        <td>@SkinDataStatTrak[3].Price</td>
+                        <td>@SkinDataStatTrak[3].Volume</td>
+                        <td><a href="https://steamcommunity.com/market/listings/730/@SkinDataStatTrak[3].SteamFormatHash" target="_blank">Link</a></td>
+                    </tr>
+                }
+                @if (WeaponSkin.Wearend >= 0.45)
+                {
+                    <tr>
+                        <th><span style="color: orange">@st</span> @bs</th>
+                        <td>@SkinDataStatTrak[4].Price</td>
+                        <td>@SkinDataStatTrak[4].Volume</td>
+                        <td><a href="https://steamcommunity.com/market/listings/730/@SkinDataStatTrak[4].SteamFormatHash" target="_blank">Link</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </BSTable>
+}

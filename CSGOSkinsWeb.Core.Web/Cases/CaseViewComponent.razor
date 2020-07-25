@@ -14,11 +14,25 @@
         <a href="https://steamcommunity.com/market/listings/730/@casePriceService.ConvertToHashKey(WeaponCase.Casename)" target="_blank">
             <div class="view-page-date">
                 <p style="margin-bottom: -2px;">Price:</p>
-                <p style="margin-bottom: -2px;">@SetCasePrice(WeaponCase.Casename)</p>
+                @if (string.IsNullOrEmpty(Price))
+                {
+                    <p style="margin-bottom: -2px;">Loading...</p>
+                }
+                else
+                {
+                    <p style="margin-bottom: -2px;">@Price</p>
+                }
             </div>
             <div class="view-page-date">
-                <p style="margin-bottom: -2px;">Available: </p>
-                <p style="margin-bottom: -2px;">@SetCaseVolume(WeaponCase.Casename)</p>
+                <p style="margin-bottom: -2px;" title="Amount sold in the past 24 hours">Volume: </p>
+                @if (string.IsNullOrEmpty(Volume))
+                {
+                    <p style="margin-bottom: -2px;">Loading...</p>
+                }
+                else
+                {
+                    <p style="margin-bottom: -2px;">@Volume</p>
+                }
             </div>
         </a>
     </div>
@@ -26,4 +40,3 @@
         <p style="margin-bottom: -2px;">@WeaponCase.Casecollection</p>
     </div>
 }
-
